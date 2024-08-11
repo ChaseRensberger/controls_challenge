@@ -1,14 +1,16 @@
 from . import BaseController
 import numpy as np
 
+# 10 * 20 * 10 = 2000
+
 class Controller(BaseController):
   """
   A simple PID controller
   """
-  def __init__(self,):
-    self.p = 0.3
-    self.i = 0.05
-    self.d = -0.1
+  def __init__(self,p,i,d):
+    self.p = p
+    self.i = i
+    self.d = d
     self.error_integral = 0
     self.prev_error = 0
 

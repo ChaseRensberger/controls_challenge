@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Tiny Physics",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/tinyphysics.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--model_path", "./models/tinyphysics.onnx",
+                "--data_path", "./data/00000.csv",
+                "--debug",
+                "--controller", "custom"
+            ]
+        }
+    ]
+}
