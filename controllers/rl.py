@@ -52,34 +52,26 @@ class Controller(BaseController):
             return self.action_space[torch.argmax(q_values).item()]
 
     def update(self, target_lataccel, current_lataccel, state, future_plan):
-        # Prepare state and action
         inputs = [current_lataccel, state.roll_lataccel, state.v_ego, state.a_ego]
         state_tensor = torch.tensor(inputs, dtype=torch.float32)
         
-        # Select action based on the current policy
         action = self.act(inputs)
-        next_lataccel = self.simulate_next_state(state, action)  # You'll need to define this function
+        next_lataccel = self.simulate_next_state(state, action)  # TODO
         
-        # Reward calculation (e.g., based on the error between target and actual lateral acceleration)
         reward = -abs(target_lataccel - next_lataccel)
         
-        # Prepare next state
         next_inputs = [next_lataccel, state.roll_lataccel, state.v_ego, state.a_ego]
         
-        # Store experience in memory
         self.memory.append((inputs, action, reward, next_inputs))
         
-        # Learn from a random sample in memory
         if len(self.memory) > 32:
             self.replay(32)
         
-        # Update epsilon
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
 
         self.save_model()
         
-        # Return the action taken
         return action
 
     def replay(self, batch_size):
@@ -98,7 +90,6 @@ class Controller(BaseController):
             loss.backward()
             self.optimizer.step()
         
-        # Periodically update the target model
         self.update_target_model()
 
     def save_model(self):
@@ -113,5 +104,4 @@ class Controller(BaseController):
         self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 
     def simulate_next_state(self, state, action):
-        # This is a placeholder function. Implement the logic to simulate the next state given the action.
-        return state[0] + action  # Example implementation, modify as needed
+        return state[0] + action 
