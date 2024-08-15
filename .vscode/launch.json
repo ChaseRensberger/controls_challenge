@@ -11,7 +11,21 @@
                 "--model_path", "./models/tinyphysics.onnx",
                 "--data_path", "./data/00000.csv",
                 "--debug",
-                "--controller", "torchpid"
+                "--controller", "custom_pid"
+            ]
+        },
+        {
+            "name": "Python Debugger: Eval",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/eval.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--model_path", "./models/tinyphysics.onnx",
+                "--data_path", "./data",
+                "--num_segs", "1000",
+                "--test_controller", "custom_pid",
+                "--baseline_controller", "pid"
             ]
         }
     ]
