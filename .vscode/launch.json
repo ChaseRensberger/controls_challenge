@@ -9,9 +9,9 @@
             "console": "integratedTerminal",
             "args": [
                 "--model_path", "./models/tinyphysics.onnx",
-                "--data_path", "./data/00000.csv",
+                "--data_path", "./data/00002.csv",
                 "--debug",
-                "--controller", "custom_pid"
+                "--controller", "torchpid"
             ]
         },
         {
