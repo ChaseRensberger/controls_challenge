@@ -24,7 +24,7 @@ class Controller(BaseController):
     self.d = -0.08
     self.error_integral = 0
     self.prev_error = 0
-    self.max_difference_between_nn_and_pid = 0.1
+    self.max_difference_between_nn_and_pid = 0.02
 
   def update(self, target_lataccel, current_lataccel, state, future_plan):
 
