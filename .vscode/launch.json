@@ -11,7 +11,7 @@
                 "--model_path", "./models/tinyphysics.onnx",
                 "--data_path", "./data/00000.csv",
                 "--debug",
-                "--controller", "pursuit"
+                "--controller", "pytorch"
             ]
         }
     ]
