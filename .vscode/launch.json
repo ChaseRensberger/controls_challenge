@@ -24,8 +24,8 @@
                 "--model_path", "./models/tinyphysics.onnx",
                 "--data_path", "./data",
                 "--num_segs", "1000",
-                "--test_controller", "custom_pid",
-                "--baseline_controller", "pid"
+                "--test_controller", "pytorch",
+                "--baseline_controller", "custom_pid_2"
             ]
         }
     ]
