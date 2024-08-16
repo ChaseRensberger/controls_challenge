@@ -1,6 +1,5 @@
 from . import BaseController
 import csv
-import os
 
 class Controller(BaseController):
   """
@@ -21,14 +20,9 @@ class Controller(BaseController):
     error_diff = error - self.prev_error
     self.prev_error = error
 
-    file_exists = os.path.isfile('pid_steer_data.csv')
-    if not file_exists:
-        with open('pid_steer_data.csv', 'a') as file:
-            writer = csv.writer(file)
-            writer.writerow(['previous_steering_angle', 'current_lataccel', 'a_ego', 'v_ego', 'roll_lataccel', 'target_lataccel'])
-    with open('zero_steer_data.csv', 'a') as file:
+    with open('pid_steer_data.csv', 'a') as file:
         writer = csv.writer(file)
-        writer.writerow([self.previous_steering_angle, current_lataccel, state.a_ego, state.v_ego, state.roll_lataccel, target_lataccel])
+        writer.writerow([state.v_ego, state.a_ego, target_lataccel, state.roll_lataccel, self.previous_steering_angle])
 
     output = self.p * error + self.i * self.error_integral + self.d * error_diff
     self.previous_steering_angle = output
