@@ -11,7 +11,7 @@
                 "--model_path", "./models/tinyphysics.onnx",
                 "--data_path", "./data/00002.csv",
                 "--debug",
-                "--controller", "torchpid"
+                "--controller", "custom_pid"
             ]
         },
         {
